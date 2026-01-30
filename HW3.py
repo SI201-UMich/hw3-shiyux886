@@ -36,41 +36,31 @@ class CouponDispenser:
         return self.coupon_cards[random_index]
 
     def distribute_session(self):
-        """
-        Run the "coupon dispenser" session.
+        round_number = 1 
+        while True:
+            user_input = input(f"Round {round_number} - Enter a name (or a comma-separated list), or type 'show' or 'exit:")
 
-        The program will loop asking you to enter a customer name (or names), show, or exit.  
-        - If you type exit (exact spelling) the program will print "Goodbye!" and stop.  
-        - If you enter one or more customer names (separated by commas).
-           * A coupon will be picked at random from a list of coupons for each name 
-           if that name doesn't already have an assigned coupon. 
-        - If you type show (exact spelling) it will display a string with each customer's name and coupon.
+            if user == "exit":
+                print("Bye!")
+                break
+            elif user_input == "show":
+                for i in range(len(self.customer_roster)):
+                    name = self.customer_roster[i]
+                    coupon = self.coupon_cards[self.issued_indices[i]]
+                    print(f"{name}: {coupon}")
+            else:
+                pieces = user_input.split(",")
+                for text in pieces:
+                    stripped = text.strip()
 
-        See the instructions for more details.
+                    if stripped != "":
+                        result = self.issue_coupon(stripped)
+                        print(result)
+            round_number += 1
 
-        Reminder: Use lists only (no dictionaries).
-        """
-        # TODO: Implement per instructions 
-        pass
 
     def tally_distribution(self):
-        """
-        Extra credit:
-        Print coupon distribution counts (NO sorting) using ONLY lists.
-
-          - If issued_indices is empty:
-              * print("Empty")
-              * return
-          - Otherwise:
-              * For each coupon in coupon_cards (in original order), print:
-                    "<coupon> distribution count: <count>."
-
-        Returns:
-            None
-        """
-        # TODO: Implement per instructions
-        pass
-
+        
 
 def main():
     """
