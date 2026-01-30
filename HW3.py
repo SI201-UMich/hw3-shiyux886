@@ -14,7 +14,7 @@ from contextlib import redirect_stdout
 
 
 class CouponDispenser:
-    def __init(self, coupon_cards):
+    def __init__(self, coupon_cards):
         self.coupon_cards = coupon_cards
         self.customer_roster = []
         self.issued_indices = []
@@ -25,6 +25,8 @@ class CouponDispenser:
         return "|".join(self.coupon_cards)
     
     def issue_coupon(self, name):
+        if len(self.coupon_cards) == 0:
+            return "The box is empty."
         if name in self.customer_roster:
             idx = self.customer_roster.index(name)
             coupon_index = self.issued_indices[idx]
@@ -32,16 +34,16 @@ class CouponDispenser:
             return f"That name alredy has a coupon: {coupon}"
         random_index = random.randrange(len(self.coupon_cards))
         self.customer_roster.append(name)
-        self.issued_indices.append[random_index]
+        self.issued_indices.append(random_index)
         return self.coupon_cards[random_index]
 
     def distribute_session(self):
         round_number = 1 
         while True:
-            user_input = input(f"Round {round_number} - Enter a name (or a comma-separated list), or type 'show' or 'exit:")
+            user_input = input(f"Round {round_number} - Enter a name (or a comma-separated list), or type 'show' or 'exit: ")
 
-            if user == "exit":
-                print("Bye!")
+            if user_input == "exit":
+                print("Goodbye!")
                 break
             elif user_input == "show":
                 for i in range(len(self.customer_roster)):
@@ -361,5 +363,5 @@ def test():
 
 if __name__ == "__main__":
     main()
-    # test()
+    test()
 
